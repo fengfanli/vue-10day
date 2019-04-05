@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01-初始用</title>
+</head>
+<!-- MVVM
+    M ： 模型，指的data数据
+    V ： 视图，就是HTML显示图
+    VM:  就是vm实例
+-->
+<body>
+    <!-- 将来 new 的Vue实例，会控制这个 元素中的所有内容 -->
+    <!-- Vue 实例所控制的这个元素区域，就是我们的 V -->
+    <div id="app">
+
+        <p>{{msg}}</p>
+        <input type="button" value="点击" :title="mytitle + 123" @click="alert">
+
+    </div>
+
+
+
+    <script type="text/javascript" src="../vue.js"></script>
+    <!-- 实例化vue对象 -->
+    <script type="text/javascript">
+        // 创建一个 Vue 实例
+        // 当我们导入包之后，在浏览器的内存中，就多了一个 Vue 构造函数
+        // 注意 ： 我们 new 出来的这个 vm 对象，就是我们 MVVM 中的 vm调度者
+        let vm = new Vue({
+            el: '#app',        // 绑定对象   表示，当前我们new的这个Vue实例，要控制的页面上的哪个区域
+            // 这里的 data 就是 MVVM 中的 M ，专门用来保存 每个页面的数据的
+            data: {            // data 属性中，存放的是el中要用到的数据
+                msg: "hello",  // 通过 Vue 提供的指令，很方面的就能把数据渲染到页面上，程序员不在手动
+                // 操作DOM元素了，【前端的Vue之类的框架，不提倡我们直接操纵dom元素了】
+                mytitle: "这是一个title",
+            },
+            methods: {
+                alert: function () {
+                    alert("hello");
+                },
+            }
+
+        });
+
+        // 注意 ： vm实例，会监听自己身上 data 中所有数据的改变，只要数据一发生变化，就会自动把 最
+        // 新的数据，从data上同步到页面中去；【好处：程序员只需要关心数据，不需要考虑如何重新渲染DOM页面】
+    </script>
+</body>
+
+</html>

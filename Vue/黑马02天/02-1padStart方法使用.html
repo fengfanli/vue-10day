@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{ dt | dataFormat('') }}
+    </div>
+
+    <script type="text/javascript" src="../vue.js"></script>
+     <script type="text/javascript">
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                dt: new Date(),
+            },
+            methods:{},
+            filters:{
+                dataFormat :function(data,arg0){
+
+                    var date = new Date(data);
+                    var y = date.getFullYear();
+                    var m = (date.getMonth()+1).toString().padStart(2,'0');
+                    var d = date.getDay().toString().padStart(2,'0');
+
+                    var hh = date.getHours().toString().padStart(2,'0');
+                    var mm = date.getMinutes().toString().padStart(2,'0');
+                    var ss = date.getSeconds().toString().padStart(2,'0');
+                    
+                    return `${y}-${m}-${d} ${hh}:${mm}:${ss}`;
+                }
+            }
+         });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 
+        这个计算机是用的  v-model  来做的， 
+        双向绑定。指的是，前台 v 的表单可以影响 m 的数据     。       vm 指的是vue的实例
+     -->
+
+    <div id="app">
+
+        <input type="text" v-model="n1" />
+
+        <select v-model="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+
+        <input type="text" v-model="n2" />
+
+        <input type="button" value="计算" @click="cale" />
+
+        <input type="text" v-model="result" />
+    </div>
+    <script>
+        var vm=new Vue({
+           el:'#app',
+           data:{
+               n1:0,
+               n2:0,
+               opt:"+",
+               result:0,
+            },
+           methods:{        //计算器 算数的方法
+               cale(){
+                   //逻辑
+                   switch(this.opt){
+                       case "+" : this.result = parseInt(this.n1)  + parseInt(this.n2);
+                        break;
+                       case "-" : this.result = Number(this.n1)  - Number(this.n2);
+                        break;
+                       case "*" : this.result = Number(this.n1)  * Number(this.n2);
+                        break;
+                       case "/" : this.result = Number(this.n1)  / Number(this.n2);
+                        break;
+                   }
+               }
+            },
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="app">
+        <!-- 使用 v-cloak 可以解决插值表达式闪烁问题  v-cloak： 是一个属性，上面有CSS -->
+        <h1 v-cloak>===={{msg}}====v-cloak</h1>
+        <!-- 默认 v-text 是没有闪烁问题的 -->
+        <!--  v-text会覆盖元素中原本的内容 -->
+        <h2 v-text="msg"></h2>
+
+        
+        <div>{{msg2}}</div>
+        <!-- v-text不会解析html -->
+        <div v-text="msg2"></div>
+        <!-- v-html会解析变量中的html -->
+        <div v-html="msg2"></div>
+    </div>
+
+</body>
+<!-- 引入vue.js -->
+<script src="../vue.js" type="text/javascript"></script>
+<script>
+    // 实例化vue对象
+    let vm = new Vue({
+        // 绑定对象
+        el:'#app',
+        data:{
+            msg:'hello vue.js',
+            msg2:'<h3>这里是h3的内容<h3>'
+        }
+    })
+</script>
+
+</html>
+
+<!-- 1、如何定义一个基本的Vue代码结构 -->
+<!-- 2、插值表达式 和 x-text -->
+<!-- 3、v-cloak -->
+<!-- 4、v-html -->
+<!-- 5、v-bind Vue提供的属相绑定机制    缩写为: -->
+<!-- 6、v-on Vue提供的事件绑定机制      缩写为@ -->
